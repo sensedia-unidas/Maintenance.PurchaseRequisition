@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Unidas.MS.Maintenance.PurchaseRequisition.Application\Unidas.MS.Maintenance.PurchaseRequisition.Application.csproj" />
+    <ProjectReference Include="..\Unidas.MS.Maintenance.PurchaseRequisition.Domain\Unidas.MS.Maintenance.PurchaseRequisition.Domain.csproj" />
+    <ProjectReference Include="..\Unidas.MS.Maintenance.PurchaseRequisition.Infra\Unidas.MS.Maintenance.PurchaseRequisition.Infra.csproj" />
+  </ItemGroup>
+
+</Project>
