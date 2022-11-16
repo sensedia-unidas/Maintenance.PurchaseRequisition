@@ -17,6 +17,12 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSal
         private readonly AppSettings _appSettings;
         private readonly ILogger<SendToSalesForceCase> _logger;
 
+        public SendToSalesForceCase(AppSettings appSettings, ILogger<SendToSalesForceCase> logger)
+        {
+            _appSettings = appSettings;
+            _logger = logger;
+        }
+
         public async Task<bool> Execute(ItemPurchaseRequisistionViewModel item)
         {
             try

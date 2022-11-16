@@ -15,6 +15,7 @@ using Unidas.MS.Maintenance.PurchaseRequisition.Infra.IoC;
 using Microsoft.OpenApi.Models;
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.ViewModels.Requests;
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.Interfaces.Services;
+using Unidas.MS.Maintenance.PurchaseRequisition.Application.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,10 @@ builder.Services.AddMvc(options =>
 });
 #endregion
 
+var appSettings = new AppSettings();
+builder.Configuration.Bind("AppSettings", appSettings);
+builder.Services.AddSingleton(appSettings);
+
 var app = builder.Build();
 
 #region Configuracoes adicionadas - app
@@ -96,10 +101,8 @@ app.MapPost("/integrate", async (ItemPurchaseRequisistionViewModel request, IPur
 {
     app.Logger.LogInformation($"Integração Purchase Requisition (ordem de compra)", request);
 
-    var x = new { ola = "mundo" };
-    return new JsonResult(x);
 
-    //return Results.Ok(await service.Integrate(request));
+    return Results.Ok(await service.Integrate(request));
 });
 
 

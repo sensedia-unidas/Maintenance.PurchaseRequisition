@@ -17,8 +17,9 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services
         private readonly ISendToSalesForceCase _useCase;
         private readonly ILogger<PurchaseRequisitionService> _logger;
 
-        public PurchaseRequisitionService(ILogger<PurchaseRequisitionService> logger)
+        public PurchaseRequisitionService(ISendToSalesForceCase useCase,ILogger<PurchaseRequisitionService> logger)
         {
+            _useCase = useCase;
             _logger = logger;
         }
 
