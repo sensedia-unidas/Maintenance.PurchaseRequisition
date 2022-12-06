@@ -19,15 +19,14 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Infra.IoC
         public static void RegisterServices(IServiceCollection services)
         {
             //REPOSITORY
-            services.AddScoped<ICarReadOnlyRepository, CarRepository>();
-            services.AddScoped<ICarWriteOnlyRepository, CarRepository>();
-            //services.AddScoped<IPurchaseRequisitionRepository, CarRepository >();
+            //services.AddScoped<ICarReadOnlyRepository, CarRepository>();
+            //services.AddScoped<ICarWriteOnlyRepository, CarRepository>();
 
             //SERVICE
-            services.AddScoped<IPickUpCarUseCase, PickUpCarUseCase>();
-            services.AddScoped<IRegisterCarUseCase, RegisterUseCase>();
             services.AddScoped<ISendToSalesForceCase, SendToSalesForceCase>();
             services.AddScoped<IPurchaseRequisitionService, PurchaseRequisitionService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            
 
             services.AddSingleton<InMemoryDbContext>();
             services.AddScoped<IMinimalValidator, MinimalValidator>();

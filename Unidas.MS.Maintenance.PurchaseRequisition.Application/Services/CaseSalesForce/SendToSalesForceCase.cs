@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Unidas.MS.Maintenance.PurchaseRequisition.Application.Interfaces;
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.Interfaces.Services.CaseSalesForce;
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.ViewModels;
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.ViewModels.Requests;
@@ -18,11 +19,13 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSal
     {
         private readonly AppSettings _appSettings;
         private readonly ILogger<SendToSalesForceCase> _logger;
+        private readonly IAuthenticationService _authenticationService;
 
-        public SendToSalesForceCase(AppSettings appSettings, ILogger<SendToSalesForceCase> logger)
+        public SendToSalesForceCase(AppSettings appSettings, ILogger<SendToSalesForceCase> logger, IAuthenticationService authenticationService)
         {
             _appSettings = appSettings;
             _logger = logger;
+            _authenticationService = authenticationService;
         }
 
         public async Task<bool> Execute(ItemPurchaseRequisistionViewModel item)
@@ -36,7 +39,8 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSal
                     BaseAddress = new Uri(_appSettings.SalesForce.Url)
                 };
 
-                var token = await GetTokenSF();
+                //var token = await GetTokenSF();
+                var token = await _authenticationService.GetTokenSF();
 
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
                 client.Timeout = new TimeSpan(0, 3, 0);
@@ -62,7 +66,7 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSal
 
         }
 
-        private async Task<string> GetTokenSF()
+        /*private async Task<string> GetTokenSF()
         {
             var client = new HttpClient();
 
@@ -95,6 +99,6 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSal
             }
 
             return "";
-        }
+        }*/
     }
 }
