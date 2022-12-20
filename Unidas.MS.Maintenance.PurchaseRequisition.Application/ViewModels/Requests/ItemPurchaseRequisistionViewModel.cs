@@ -23,6 +23,9 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.ViewModels.Reque
             public string OperationTypeId { get; set; }
         }*/
 
+        [JsonPropertyName("IdSalesForce")]
+        public string IdSalesForce { get; set; }
+
         [JsonPropertyName("NumeroRC__c")]
         public string NumeroRC { get; set; }
 

@@ -36,7 +36,7 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSal
 
                 var client = new HttpClient
                 {
-                    BaseAddress = new Uri(_appSettings.SalesForce.Url)
+                    BaseAddress = new Uri(_appSettings.SalesForce.Url + item.IdSalesForce)
                 };
 
                 //var token = await GetTokenSF();
