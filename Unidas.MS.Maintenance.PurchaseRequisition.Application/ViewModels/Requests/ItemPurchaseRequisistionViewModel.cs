@@ -26,32 +26,24 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.ViewModels.Reque
         [JsonPropertyName("IdSalesForce")]
         public string IdSalesForce { get; set; }
 
-        [JsonPropertyName("NumeroRC__c")]
-        public string NumeroRC { get; set; }
+        [JsonPropertyName("IdPurchaseRequisition")]
+        public string IdPurchaseRequisition { get; set; }
 
-        [JsonPropertyName("StatusRC__c")]
-        public string StatusRC { get; set; }
+        [JsonPropertyName("StatusPurchaseRequisition")]
+        public string StatusPurchaseRequisition { get; set; }
 
-        [JsonPropertyName("Ordem_de_compra_produtos__c")]
-        public string OrdemCompraProdutos { get; set; }
+        [JsonPropertyName("IdPurchaseRequisitionProduct")]
+        public string IdPurchaseRequisitionProduct { get; set; }
 
-        [JsonPropertyName("Ordem_de_compra_servicos__c")]
-        public string OrdemCompraServico { get; set; }
+        [JsonPropertyName("IdPurchaseRequisitionService")]
+        public string IdPurchaseRequisitionService { get; set; }
 
-        [JsonPropertyName("StatusOCProdutos__c")]
-        public string StatusOrdemCompraProduto { get; set; }
+        [JsonPropertyName("StatusPurchaseRequisitionProduct")]
+        public string StatusPurchaseRequisitionProduct { get; set; }
 
-        [JsonPropertyName("StatusOCServicos__c")]
-        public string StatusOrdemCompraServico { get; set; }
+        [JsonPropertyName("StatusPurchaseRequisitionService")]
+        public string StatusPurchaseRequisitionService { get; set; }
 
-        [JsonPropertyName("OrdemCompraId")]
-        public string ItemOrdemCompraId { get; set; }
-
-        [JsonPropertyName("StatusItem")]
-        public string ItemStatus { get; set; }
-
-        [JsonPropertyName("OperationTypeId")]
-        public string ItemOperationTypeId { get; set; }
     }
 
 

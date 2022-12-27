@@ -28,7 +28,7 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSal
             _authenticationService = authenticationService;
         }
 
-        public async Task<bool> Execute(ItemPurchaseRequisistionViewModel item)
+        public async Task<bool> Execute(ItemPurchaseRequisistionToSalesForceViewModel item)
         {
             try
             {

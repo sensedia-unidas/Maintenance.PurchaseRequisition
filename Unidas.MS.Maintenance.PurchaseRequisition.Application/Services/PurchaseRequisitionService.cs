@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using AutoMapper;
+using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services
     {
         private readonly ISendToSalesForceCase _useCase;
         private readonly ILogger<PurchaseRequisitionService> _logger;
+        private readonly IMapper _mapper;
 
-        public PurchaseRequisitionService(ISendToSalesForceCase useCase,ILogger<PurchaseRequisitionService> logger)
+        public PurchaseRequisitionService(ISendToSalesForceCase useCase,ILogger<PurchaseRequisitionService> logger, IMapper mapper)
         {
             _useCase = useCase;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public async Task<ValidationResult> Integrate(ItemPurchaseRequisistionViewModel request)
@@ -29,25 +32,27 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Services
 
             var validation = new ValidationResult();
 
-            switch (request.StatusRC)
+            switch (request.StatusPurchaseRequisition)
             {
                 case "0":
-                    request.StatusRC = "Cancelado";
+                    request.StatusPurchaseRequisition = "Cancelado";
                     break;
                 case "1":
-                    request.StatusRC = "Negado";
+                    request.StatusPurchaseRequisition = "Negado";
                     break;
                 case "9":
-                    request.StatusRC = "Aprovado";
+                    request.StatusPurchaseRequisition = "Aprovado";
                     break;
                 case "3":
-                    request.StatusRC = "Faturado";
+                    request.StatusPurchaseRequisition = "Faturado";
                     break;
             }
 
-            if (!await _useCase.Execute(request))
+            var finalModel = _mapper.Map<ItemPurchaseRequisistionToSalesForceViewModel>(request);
+
+            if (!await _useCase.Execute(finalModel))
             {
-                _logger.LogInformation("Service - Finalizando integração sem sucesso", request);
+                _logger.LogInformation("Service - Finalizando integração sem sucesso", finalModel);
                 validation.Errors.Add(new ValidationFailure(String.Empty, "Integração não realizada"));
             }
 

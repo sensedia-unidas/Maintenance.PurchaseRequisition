@@ -9,6 +9,6 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Application.Interfaces.Servi
 {
     public interface ISendToSalesForceCase
     {
-        Task<bool> Execute(ItemPurchaseRequisistionViewModel item);
+        Task<bool> Execute(ItemPurchaseRequisistionToSalesForceViewModel item);
     }
 }

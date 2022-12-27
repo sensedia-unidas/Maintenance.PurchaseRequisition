@@ -11,6 +11,7 @@ using Unidas.MS.Maintenance.PurchaseRequisition.Application.Interfaces.Services.
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.Services.CaseSalesForce;
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.Services;
 using Unidas.MS.Maintenance.PurchaseRequisition.Application.Interfaces.Services;
+using Unidas.MS.Maintenance.PurchaseRequisition.Application.AutoMapper;
 
 namespace Unidas.MS.Maintenance.PurchaseRequisition.Infra.IoC
 {
@@ -30,6 +31,13 @@ namespace Unidas.MS.Maintenance.PurchaseRequisition.Infra.IoC
 
             services.AddSingleton<InMemoryDbContext>();
             services.AddScoped<IMinimalValidator, MinimalValidator>();
+
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new ViewModelToDomainMappingProfile());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
     }
 }
