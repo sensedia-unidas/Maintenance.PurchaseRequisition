@@ -97,7 +97,7 @@ app.UseHttpsRedirection();
 // GET /GetMessage
 
 // POST
-app.MapPost("/integrate", async (ItemPurchaseRequisistionViewModel request, IPurchaseRequisitionService service) =>
+app.MapPost("/PurchaseRequisition/integrate", async (ItemPurchaseRequisistionViewModel request, IPurchaseRequisitionService service) =>
 {
     app.Logger.LogInformation($"Integração Purchase Requisition (ordem de compra)", request);
 
